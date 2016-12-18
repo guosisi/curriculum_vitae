@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>郭思笛简历</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css"/>
+    <link rel="stylesheet" href="css/animate.css"/>
+
+    <script>
+        var desW = 640;
+        var winW = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = winW*100/desW + 'px';
+    </script>
+</head>
+<body>
+<section class="main">
+    <div class="music">
+        <audio src="audio/beyond.mp3" id="beyond" loop preload="none"></audio>
+        <!--
+            preload: none 不提前进行预加载
+                     auto 提前进行加载
+
+        -->
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide slide1">
+                <img src="img/svg/geren.svg" alt=""/>
+                <img src="img/jianli.png" alt=""/>
+                <div>
+                    <span>姓名: 郭思笛</span>
+                    <span>职位: ************</span>
+                </div>
+                <img src="img/bottom.png" alt=""/>
+            </div>
+            <div class="swiper-slide slide2">
+                <img src="img/title2.png" alt=""/>
+                <div>
+                    <p><span>学历：</span>本科</p>
+                    <p><span>专业：</span>计算机科学与技术</p>
+                    <p><span>英语：</span>全国六级</p>
+                    <p><span>籍贯：</span>河北省高碑店</p>
+                    <p><span>手机：</span>182-0162-9855</p>
+                    <p><span>email：</span>guosidi@126.com</p>
+                </div>
+                <img src="img/q2_03.png" alt=""/>
+            </div>
+            <div class="swiper-slide slide3">
+                <img src="img/title3.png" alt=""/>
+                <div class="lef">
+                    <div></div>
+                    <div>1<span><i></i></span></div>
+                    <div></div>
+                    <div>2<span><i></i></span></div>
+                    <div></div>
+                </div>
+                <div class="righ">
+                    <p>2015.4 - 今</p>
+                    <p>北京中视广信科技有限公司</p>
+                    <p><span style="color: #ead51f">简介：</span>开发北京电视台法治进行时栏目微信公众号宣传使用的系统，该系统模拟微信公众平台，实现微信开放平台的接口。</p>
+
+
+                    <p>2013.12 - 2015.3</p>
+                    <p>北京光年无限科技有限公司</p>
+                    <p><span style="color: #ead51f">简介：</span>在公司开发过两个官方网站，使用java语音编写后台，实现数据交互呈现。</p>
+                </div>
+                <img src="img/q2_03.png" alt=""/>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+<script src="js/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        direction: 'vertical',
+        loop : true,
+        onTransitionEnd : function(swiper){
+            var slides = swiper.slides;
+            var curIndex = swiper.activeIndex;
+            // 把真实的第一个滑块赋值了一份放在最后的位置
+            // 把真实的最后一个位置放在第一个滑块的位置
+            var lastIndexSlide = slides.length - 1; // 现在的最后一个滑块
+            var trueIndexSlide = slides.length - 2; // 原来的最后一个滑块
+            [].forEach.call(slides, function(item, index){
+                item.id = '';
+                if(curIndex == index){
+                    switch (index){
+                        case 0:
+                            item.id = 'page'+ lastIndexSlide;
+                            break;
+                        case lastIndexSlide:
+                            item.id = 'page1';
+                            break;
+                        default :
+                            item.id = 'page'+ curIndex;
+                    }
+                }
+
+            });
+
+        }
+    });
+    /* var mySwiper = new Swiper('.swiper-container', {
+     direction: 'vertical',
+     onTransitionEnd : function(swiper){
+     var curIndex = swiper.activeIndex; // 当前活动（显示）滑块的索引
+     var slides = swiper.slides;
+     [].forEach.call(slides, function(item, index){
+     item.id = '';
+     if(index == curIndex){
+     item.id = 'page'+(curIndex+1);
+     }
+     })
+
+     },
+     onInit : function(swiper){
+     var slides = swiper.slides;
+     slides[0].id = 'page1';
+     }
+     });*/
+    var music = document.querySelector('.music');
+    var beyond = document.querySelector('#beyond');
+    window.setTimeout(function(){
+        // paused 属性判断音频文件是播放还是停止， 播放 play() 停止pause().
+        music.addEventListener('click', function(){
+            if(beyond.paused){
+                beyond.play();
+                music.className = 'music musicCur';
+            }else{
+                beyond.pause();
+                music.className = 'music';
+            }
+        })
+    }, 1000);
+
+</script>
